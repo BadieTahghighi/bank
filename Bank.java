@@ -22,7 +22,7 @@ public class Bank {
     }
 
     public boolean addAccount(Account account) {
-        return accounts.put(account);
+        return accounts.add(account);
     }
 
     public void printAccounts() {
