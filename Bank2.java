@@ -23,11 +23,11 @@ class Bank2 {
 
     public Account findAccount(int id) // find the account for the given id. Returns null if not found
     {
-        return accounts.get(id) || null;
+        return accounts.get(id);
     }
 
     public boolean addAccount(Account account) {
-       return accounts.put(account);
+        return accounts.put(account);
     }
 
     public void printAccounts() {
@@ -37,11 +37,15 @@ class Bank2 {
     }
 
     public HashMap<String, Double> getTotalBalancePerCity() {
+        HashMap<String, Double> result = new HashMap<>();
 
+        return result;
     }
 
     public HashMap<String, Integer> getTotalCountPerCity() {
+        HashMap<String, Integer> result = new HashMap<>();
 
+        return result;
     }
 
     public void reportCity(HashMap<String, Double> balances, HashMap<String, Integer> counts) {
@@ -54,7 +58,9 @@ class Bank2 {
     }
 
     public HashMap<Integer, Integer> getTotalCountPerRange(ArrayList<Integer> ranges) {
+        HashMap<Integer, Integer> result = new HashMap<>();
 
+        return result;
     }
 
     public void reportRanges(ArrayList<Integer> ranges, HashMap<Integer, Integer> countsPerRange) {

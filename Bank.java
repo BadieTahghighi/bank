@@ -18,11 +18,11 @@ public class Bank {
 
     public Account findAccount(int id) // find the account for the given id. Returns null if not found
     {
-
+        return accounts.get(id);
     }
 
     public boolean addAccount(Account account) {
-
+        return accounts.put(account);
     }
 
     public void printAccounts() {
@@ -40,15 +40,21 @@ public class Bank {
     }
 
     public ArrayList<String> populateDistinctCityList() {
+        ArrayList<String> result = new ArrayList<>();
 
+        return result;
     }
 
     public ArrayList<Double> getTotalBalancePerCity(ArrayList<String> cities) {
+        ArrayList<Double> result = new ArrayList<>();
 
+        return result;
     }
 
     public ArrayList<Integer> getTotalCountPerCity(ArrayList<String> cities) {
+        ArrayList<Integer> result = new ArrayList<>();
 
+        return result;
     }
 
     public void reportTotalPerCity(ArrayList<String> cities, ArrayList<Integer> counts, ArrayList<Double> totals) {
@@ -59,7 +65,9 @@ public class Bank {
     }
 
     public ArrayList<Integer> getTotalCountPerRange(ArrayList<Integer> ranges) {
+        ArrayList<Integer> result = new ArrayList<>();
 
+        return result;
     }
 
     public void reportRanges(ArrayList<Integer> ranges, ArrayList<Integer> counts) {
