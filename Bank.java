@@ -40,20 +40,48 @@ public class Bank {
     }
 
     public ArrayList<String> populateDistinctCityList() {
-        ArrayList<String> result = new ArrayList<>();
-
-        return result;
+        ArrayList<String> cities = new ArrayList<>();
+        for (Account account : accounts) {
+            String city = account.getCity();
+            boolean cityAlreadyExists = false;
+            for (String ct : cities) {
+                if (ct.equals(city)) {
+                    cityAlreadyExists = true;
+                    break;
+                }
+            }
+            if (!cityAlreadyExists) {
+                cities.add(city);
+            }
+        }
+        return cities;
     }
 
     public ArrayList<Double> getTotalBalancePerCity(ArrayList<String> cities) {
         ArrayList<Double> result = new ArrayList<>();
-
+        for (String city : cities) {
+            double totalBalanceOfTheCity = 0;
+            for (Account account : accounts) {
+                if (account.getCity().equals(city)) {
+                    totalBalanceOfTheCity += account.getBalance();
+                }
+            }
+            result.add(totalBalanceOfTheCity);
+        }
         return result;
     }
 
     public ArrayList<Integer> getTotalCountPerCity(ArrayList<String> cities) {
         ArrayList<Integer> result = new ArrayList<>();
-
+        for (String city : cities) {
+            int persons = 0;
+            for (Account account : accounts) {
+                if (account.getCity().equals(city)) {
+                    persons++;
+                }
+            }
+            result.add(persons);
+        }
         return result;
     }
 
@@ -66,7 +94,19 @@ public class Bank {
 
     public ArrayList<Integer> getTotalCountPerRange(ArrayList<Integer> ranges) {
         ArrayList<Integer> result = new ArrayList<>();
-
+    
+        for (int index = 0; index < ranges.size()-1; index++) {
+            int count = 0;
+            int min = ranges.get(index);
+            int max = ranges.get(index + 1);
+            for (Account account : accounts) {
+                double balance = account.getBalance();
+                if (balance >= min && balance < max) {
+                   count++; 
+                }
+            }
+            result.add(count);
+        }
         return result;
     }
 

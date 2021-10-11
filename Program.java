@@ -3,6 +3,7 @@ package bank;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Program {
@@ -11,9 +12,20 @@ public class Program {
         Account acc2 = new Account(2, "Jack", 1800, "Sydney");
         Account acc3 = new Account(3, "Jill", 20000, "Tehran");
         Account acc4 = new Account(4, "Robert", 8000, "Tehran");
+        Random random = new Random();
         Bank bank = new Bank("Hooman Bank");
-
+        String[] namesTemp = new String[] { "Kim", "Jack", "Jill", "Robert", "Gustav", "Dmitri", "Johannes" };
+        String[] citiesTemp = new String[] { "Karaj", "Khorasan", "Kerman", "Kalale" };
         // adding accounts
+        long start  = System.currentTimeMillis();
+        for (int index = 0; index < 1000; index++) {
+            Account newAccount = new Account(index + 1, namesTemp[random.nextInt(namesTemp.length - 1)],
+                    random.nextDouble() * 1000, citiesTemp[random.nextInt(citiesTemp.length - 1)]);
+            bank.addAccount(newAccount);
+        }
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
+        
         bank.addAccount(acc1);
         bank.addAccount(acc2);
         bank.addAccount(acc3);
@@ -44,7 +56,7 @@ public class Program {
         Account acc = bank.findAccount(3);
         withdraw(acc, 50);
 
-        bank.printAccounts();
+        // bank.printAccounts();
         double total = bank.calcTotalBalance();
         System.out.println("Total balance = " + total);
 

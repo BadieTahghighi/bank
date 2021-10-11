@@ -27,7 +27,13 @@ class Bank2 {
     }
 
     public boolean addAccount(Account account) {
-        return accounts.put(account);
+        for (Account acc : accounts.values()) {
+            if (acc.getID() == account.getID()) {
+                return false;
+            }
+        }
+        accounts.put(account.getID(), account);
+        return true;
     }
 
     public void printAccounts() {
@@ -36,15 +42,40 @@ class Bank2 {
         }
     }
 
+    // update required
     public HashMap<String, Double> getTotalBalancePerCity() {
         HashMap<String, Double> result = new HashMap<>();
-
+        for (Account account : accounts.values()) {
+            double balance = account.getBalance();
+            String city = account.getCity();
+            boolean cityExists = false;
+            for (String ct : result.keySet()) {
+                if (ct.equals(city)) {
+                    cityExists = true;
+                    break;
+                }
+            }
+            if (cityExists) {
+                double oldBalance = result.get(city);
+                result.put(city, oldBalance + balance);
+            } else {
+                result.put(city, balance);
+            }
+        }
         return result;
     }
 
     public HashMap<String, Integer> getTotalCountPerCity() {
         HashMap<String, Integer> result = new HashMap<>();
-
+        for (Account account : accounts.values()) {
+            String city = account.getCity();
+            int ct = result.get(city);
+            if (ct != 0) {
+                result.put(city, ct + 1);
+            } else {
+                result.put(city, 1);
+            }
+        }
         return result;
     }
 
@@ -59,12 +90,27 @@ class Bank2 {
 
     public HashMap<Integer, Integer> getTotalCountPerRange(ArrayList<Integer> ranges) {
         HashMap<Integer, Integer> result = new HashMap<>();
-
+        for (int index = 0; index < ranges.size() - 1; index++) {
+            int min = ranges.get(index);
+            int max = ranges.get(index + 1);
+            int count = 0;
+            for (Account account : accounts.values()) {
+                double balance = account.getBalance();
+                if (balance >= min && balance < max) {
+                    count++;
+                }
+            }
+            result.put(ranges.get(index + 1), count);
+            // Armaqan IQ 400 :O
+        }
         return result;
     }
 
     public void reportRanges(ArrayList<Integer> ranges, HashMap<Integer, Integer> countsPerRange) {
-
+        for (int index = 0; index < ranges.size() - 1; index++) {
+            int count = countsPerRange.get(ranges.get(index + 1));
+            System.out.println(count + "accounts are in range of\t" + ranges.get(index) + ", " + ranges.get(index + 1));
+        }
     }
 
 }
