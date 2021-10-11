@@ -17,15 +17,15 @@ public class Program {
         String[] namesTemp = new String[] { "Kim", "Jack", "Jill", "Robert", "Gustav", "Dmitri", "Johannes" };
         String[] citiesTemp = new String[] { "Karaj", "Khorasan", "Kerman", "Kalale" };
         // adding accounts
-        long start  = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         for (int index = 0; index < 1000; index++) {
             Account newAccount = new Account(index + 1, namesTemp[random.nextInt(namesTemp.length - 1)],
                     random.nextDouble() * 1000, citiesTemp[random.nextInt(citiesTemp.length - 1)]);
             bank.addAccount(newAccount);
         }
         long end = System.currentTimeMillis();
-        System.out.println(end - start);
-        
+        System.out.println("Time to add accounts to the arraylist: " + (end - start) + "ms");
+
         bank.addAccount(acc1);
         bank.addAccount(acc2);
         bank.addAccount(acc3);
@@ -40,15 +40,15 @@ public class Program {
         addAccount(bank, acc4);
 
         if (acc1.deposit(-60)) {
-            System.out.println(" deposite was succesful and the new balance is " + acc1.getBalance());
+            System.out.println("deposite was succesful and the new balance is " + acc1.getBalance());
         } else {
-            System.out.println(" deposite was not succesful");
+            System.out.println("deposite was not succesful");
         }
 
         if (acc2.withdraw(600)) {
-            System.out.println(" withdraw was succesful and the new balance is " + acc2.getBalance());
+            System.out.println("withdraw was succesful and the new balance is " + acc2.getBalance());
         } else {
-            System.out.println(" withdraw was not succesful");
+            System.out.println("withdraw was not succesful");
         }
 
         // or this one which is a better design
@@ -61,17 +61,17 @@ public class Program {
         System.out.println("Total balance = " + total);
 
         // search accounts
-        int id = 1;
-        Scanner sc = new Scanner(System.in);
-        while (id != 0) {
-            System.out.print(" Enter an account ID: ( 0 to exit) ");
-            id = sc.nextInt();
-            acc = bank.findAccount(id);
-            if (acc != null)
-                acc.print();
-            else
-                System.out.println(" Account has not been found");
-        }
+        // int id = 1;
+        // Scanner sc = new Scanner(System.in);
+        // while (id != 0) {
+        //     System.out.print(" Enter an account ID: ( 0 to exit) ");
+        //     id = sc.nextInt();
+        //     acc = bank.findAccount(id);
+        //     if (acc != null)
+        //         acc.print();
+        //     else
+        //         System.out.println(" Account has not been found");
+        // }
 
         // report total balances for all accounts for all given cities
         // bank.reportCity1(); //hardcoded
@@ -107,9 +107,9 @@ public class Program {
         HashMap<String, Double> cities2 = bank2.getTotalBalancePerCity();
         HashMap<String, Integer> counts2 = bank2.getTotalCountPerCity();
         bank2.reportCity(cities2, counts2);
-
-        // HashMap<Integer,Integer> countsPerRange1=bank2.getTotalCountPerRange(ranges);
-        // bank2.reportRanges(ranges,countsPerRange1);
+        
+        HashMap<Integer,Integer> countsPerRange1=bank2.getTotalCountPerRange(ranges);
+        bank2.reportRanges(ranges,countsPerRange1);
 
     }
 

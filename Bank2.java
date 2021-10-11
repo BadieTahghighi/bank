@@ -66,10 +66,11 @@ class Bank2 {
     }
 
     public HashMap<String, Integer> getTotalCountPerCity() {
-        HashMap<String, Integer> result = new HashMap<>();
+        HashMap<String, Integer> result = new HashMap<String, Integer>();
         for (Account account : accounts.values()) {
             String city = account.getCity();
-            int ct = result.get(city);
+            System.out.println(result);
+            int ct = result.get(city) == null ? 0 : result.get(city);
             if (ct != 0) {
                 result.put(city, ct + 1);
             } else {
@@ -81,7 +82,7 @@ class Bank2 {
 
     public void reportCity(HashMap<String, Double> balances, HashMap<String, Integer> counts) {
         System.out.println();
-        System.out.println("\n City \t \t Total Balance \t \t Average Balance");
+        System.out.println("\nCity \t \t Total Balance \t \t Average Balance");
         for (String city : balances.keySet()) {
             System.out.println(
                     city + "\t \t " + balances.get(city) + " \t \t " + balances.get(city) / (double) counts.get(city));
@@ -109,7 +110,8 @@ class Bank2 {
     public void reportRanges(ArrayList<Integer> ranges, HashMap<Integer, Integer> countsPerRange) {
         for (int index = 0; index < ranges.size() - 1; index++) {
             int count = countsPerRange.get(ranges.get(index + 1));
-            System.out.println(count + "accounts are in range of\t" + ranges.get(index) + ", " + ranges.get(index + 1));
+            System.out.println(count + (count == 1 ? " account is in range of"
+                    : " accounts are in range of") + "\t" + ranges.get(index) + ", " + ranges.get(index + 1));
         }
     }
 
