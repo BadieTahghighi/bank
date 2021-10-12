@@ -69,7 +69,6 @@ class Bank2 {
         HashMap<String, Integer> result = new HashMap<String, Integer>();
         for (Account account : accounts.values()) {
             String city = account.getCity();
-            System.out.println(result);
             int ct = result.get(city) == null ? 0 : result.get(city);
             if (ct != 0) {
                 result.put(city, ct + 1);
@@ -111,7 +110,7 @@ class Bank2 {
         for (int index = 0; index < ranges.size() - 1; index++) {
             int count = countsPerRange.get(ranges.get(index + 1));
             System.out.println(count + (count == 1 ? " account is in range of"
-                    : " accounts are in range of") + "\t" + ranges.get(index) + ", " + ranges.get(index + 1));
+                    : " accounts are in range of") + "\t" + ranges.get(index) + " - " + ranges.get(index + 1));
         }
     }
 

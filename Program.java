@@ -13,6 +13,7 @@ public class Program {
         Account acc3 = new Account(3, "Jill", 20000, "Tehran");
         Account acc4 = new Account(4, "Robert", 8000, "Tehran");
         Random random = new Random();
+        System.out.println("Bank 1:");
         Bank bank = new Bank("Hooman Bank");
         String[] namesTemp = new String[] { "Kim", "Jack", "Jill", "Robert", "Gustav", "Dmitri", "Johannes" };
         String[] citiesTemp = new String[] { "Karaj", "Khorasan", "Kerman", "Kalale" };
@@ -91,6 +92,7 @@ public class Program {
         ArrayList<Integer> countsPerRange = bank.getTotalCountPerRange(ranges);
         bank.reportRanges(ranges, countsPerRange);
 
+        System.out.println("Bank 2:");
         Bank2 bank2 = new Bank2("hooman Better Bank");
 
         // adding accounts
@@ -107,7 +109,7 @@ public class Program {
         HashMap<String, Double> cities2 = bank2.getTotalBalancePerCity();
         HashMap<String, Integer> counts2 = bank2.getTotalCountPerCity();
         bank2.reportCity(cities2, counts2);
-        
+        System.out.println();
         HashMap<Integer,Integer> countsPerRange1=bank2.getTotalCountPerRange(ranges);
         bank2.reportRanges(ranges,countsPerRange1);
 
@@ -116,9 +118,9 @@ public class Program {
     public static void withdraw(Account acc, double amount) // UI method
     {
         if (acc.withdraw(amount)) {
-            System.out.println(" withdraw was succesful and the new balance is " + acc.getBalance());
+            System.out.println("withdraw was succesful and the new balance is " + acc.getBalance());
         } else {
-            System.out.println(" withdraw was not succesful");
+            System.out.println("withdraw was not succesful");
         }
     }
 
