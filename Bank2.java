@@ -1,4 +1,4 @@
-package bank;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -109,8 +109,8 @@ class Bank2 {
     public void reportRanges(ArrayList<Integer> ranges, HashMap<Integer, Integer> countsPerRange) {
         for (int index = 0; index < ranges.size() - 1; index++) {
             int count = countsPerRange.get(ranges.get(index + 1));
-            System.out.println(count + (count == 1 ? " account is in range of"
-                    : " accounts are in range of") + "\t" + ranges.get(index) + " - " + ranges.get(index + 1));
+            System.out.println(count + (count == 1 ? " account is in range of" : " accounts are in range of") + "\t"
+                    + ranges.get(index) + " - " + ranges.get(index + 1));
         }
     }
 

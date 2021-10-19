@@ -1,4 +1,3 @@
-package bank;
 
 /**
  *
@@ -94,15 +93,15 @@ public class Bank {
 
     public ArrayList<Integer> getTotalCountPerRange(ArrayList<Integer> ranges) {
         ArrayList<Integer> result = new ArrayList<>();
-    
-        for (int index = 0; index < ranges.size()-1; index++) {
+
+        for (int index = 0; index < ranges.size() - 1; index++) {
             int count = 0;
             int min = ranges.get(index);
             int max = ranges.get(index + 1);
             for (Account account : accounts) {
                 double balance = account.getBalance();
                 if (balance >= min && balance < max) {
-                   count++; 
+                    count++;
                 }
             }
             result.add(count);

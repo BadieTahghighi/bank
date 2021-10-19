@@ -1,10 +1,7 @@
-package bank;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
@@ -65,13 +62,13 @@ public class Program {
         // int id = 1;
         // Scanner sc = new Scanner(System.in);
         // while (id != 0) {
-        //     System.out.print(" Enter an account ID: ( 0 to exit) ");
-        //     id = sc.nextInt();
-        //     acc = bank.findAccount(id);
-        //     if (acc != null)
-        //         acc.print();
-        //     else
-        //         System.out.println(" Account has not been found");
+        // System.out.print(" Enter an account ID: ( 0 to exit) ");
+        // id = sc.nextInt();
+        // acc = bank.findAccount(id);
+        // if (acc != null)
+        // acc.print();
+        // else
+        // System.out.println(" Account has not been found");
         // }
 
         // report total balances for all accounts for all given cities
@@ -110,8 +107,8 @@ public class Program {
         HashMap<String, Integer> counts2 = bank2.getTotalCountPerCity();
         bank2.reportCity(cities2, counts2);
         System.out.println();
-        HashMap<Integer,Integer> countsPerRange1=bank2.getTotalCountPerRange(ranges);
-        bank2.reportRanges(ranges,countsPerRange1);
+        HashMap<Integer, Integer> countsPerRange1 = bank2.getTotalCountPerRange(ranges);
+        bank2.reportRanges(ranges, countsPerRange1);
 
     }
 
