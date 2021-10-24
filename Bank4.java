@@ -1,4 +1,4 @@
-
+package bank;
 /**
  * Bank4
  * 
@@ -19,7 +19,7 @@ public class Bank4 {
             accounts.insert(account.getID(), account);
             return true;
         } catch (Exception e) {
-            return false
+            return false;
         }
     }
 }

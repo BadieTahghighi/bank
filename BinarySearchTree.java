@@ -2,27 +2,27 @@
  *
  * @author Hooman
  */
-public class BinarySearchTree extends SearchStructure {
-    class Node {
-        Item item;
-        Node left;
-        Node right;
+public class BinarySearchTree<K, V> extends SearchStructure<K, V> {
+    class Node<K, V> {
+        Item<K, V> item;
+        Node<K, V> left;
+        Node<K, V> right;
 
-        public Node(<T> key, <V> data) {
-            item = new Item(key, data);
+        public Node(K key, V data) {
+            item = new Item<K, V>(key, data);
             left = null;
             right = null;
         }
     }
 
-    public static Node root;
+    public Node<K, V> root;
 
     public BinarySearchTree() {
         this.root = null;
     }
 
-    public <V> search(<T> key) {
-        Node current = root;
+    public V search(Object key) {
+        Node<K, V> current = root;
         while (current != null) {
             if (current.item.key.equals(key)) {
                 return current.item.data;
@@ -35,9 +35,9 @@ public class BinarySearchTree extends SearchStructure {
         return null;
     }
 
-    public boolean delete(<T> key) {
-        Node parent = root;
-        Node current = root;
+    public boolean delete(Object key) {
+        Node<K, V> parent = root;
+        Node<K, V> current = root;
         boolean isLeftChild = false;
         while (!current.item.key.equals(key)) {
             parent = current;
@@ -83,7 +83,7 @@ public class BinarySearchTree extends SearchStructure {
             }
         } else if (current.left != null && current.right != null) {
             // now we have found the minimum element in the right sub-tree
-            Node successor = getSuccessor(current);
+            Node<K, V> successor = getSuccessor(current);
             if (current == root) {
                 root = successor;
             } else if (isLeftChild) {
@@ -96,10 +96,10 @@ public class BinarySearchTree extends SearchStructure {
         return true;
     }
 
-    public Node getSuccessor(Node deleleNode) {
-        Node successsor = null;
-        Node successsorParent = null;
-        Node current = deleleNode.right;
+    public Node<K, V> getSuccessor(Node<K, V> deleleNode) {
+        Node<K, V> successsor = null;
+        Node<K, V> successsorParent = null;
+        Node<K, V> current = deleleNode.right;
         while (current != null) {
             successsorParent = successsor;
             successsor = current;
@@ -115,16 +115,16 @@ public class BinarySearchTree extends SearchStructure {
         return successsor;
     }
 
-    public boolean insert(<T> key, <V> data) {
+    public boolean insert(K key, V data) {
         if (search(key) != null)
             return false;
-        Node newNode = new Node(key, data);
+        Node<K, V> newNode = new Node<K, V>(key, data);
         if (root == null) {
             root = newNode;
             return true;
         }
-        Node current = root;
-        Node parent = null;
+        Node<K, V> current = root;
+        Node<K, V> parent = null;
         while (true) {
             parent = current;
             if (current.item.key.compareTo(key) > 0) {
@@ -143,7 +143,7 @@ public class BinarySearchTree extends SearchStructure {
         }
     }
 
-    public void display(Node root) {
+    public void display(Node<K, V> root) {
         if (root != null) {
             display(root.left);
             System.out.print(root.item);

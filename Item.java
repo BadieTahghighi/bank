@@ -1,6 +1,5 @@
 
-
-public class Item<key,value> {
+public class Item<key, value> {
     public key key;
     public value data;
 
@@ -12,7 +11,7 @@ public class Item<key,value> {
         this.data = data;
     }
 
-    public String toString(){
+    public String toString() {
         return key + "->" + data;
     }
 }
