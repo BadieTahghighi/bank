@@ -15,8 +15,11 @@ public class Bank4 {
     }
 
     public boolean addAccount(Account account) {
-        boolean added = false;
-
-        return added;
+        try {
+            accounts.insert(account.getID(), account);
+            return true;
+        } catch (Exception e) {
+            return false
+        }
     }
 }
