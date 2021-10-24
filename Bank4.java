@@ -6,6 +6,17 @@
  */
 
 public class Bank4 {
-    public BST<Integer, Node> accounts;
+    public BinarySearchTree<Integer, Account> accounts;
     public String name;
+
+    public Bank4(String name) {
+        this.accounts = new BinarySearchTree()<Integer, Accoutn>;
+        this.name = name;
+    }
+
+    public boolean addAccount(Account account) {
+        boolean added = false;
+
+        return added;
+    }
 }
