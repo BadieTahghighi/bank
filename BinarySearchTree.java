@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  *
  * @author Hooman
@@ -7,6 +9,7 @@ public class BinarySearchTree<K, V> extends SearchStructure<K, V> {
         Item<K, V> item;
         Node<K, V> left;
         Node<K, V> right;
+        Node<K, V> parent;
 
         public Node(K key, V data) {
             item = new Item<K, V>(key, data);
@@ -21,7 +24,7 @@ public class BinarySearchTree<K, V> extends SearchStructure<K, V> {
         this.root = null;
     }
 
-    public V search(Object key) {
+    public V search(K key) {
         Node<K, V> current = root;
         while (current != null) {
             if (current.item.key.equals(key)) {
@@ -131,16 +134,39 @@ public class BinarySearchTree<K, V> extends SearchStructure<K, V> {
                 current = current.left;
                 if (current == null) {
                     parent.left = newNode;
+                    newNode.parent = parent;
                     return true;
                 }
             } else {
                 current = current.right;
                 if (current == null) {
                     parent.right = newNode;
+                    newNode.parent = parent;
                     return true;
                 }
             }
         }
+    }
+
+    public HashMap<K, V> iterator() {
+        HashMap<K, V> result = new HashMap<>();
+        Node<K, V> current = this.root;
+        do {
+            result.put(current.item.key, current.item.data);
+            if (current.left != null) {
+                current = current.left;
+            } else {
+                while (current.right == null) {
+                    current = current.parent;
+                }
+                if (current != null) {
+                    current = current.right;
+                } else {
+                    break;
+                }
+            }
+        } while (current.parent != null);
+        return result;
     }
 
     public void display(Node<K, V> root) {
