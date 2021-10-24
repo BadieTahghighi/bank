@@ -65,6 +65,14 @@ class Bank2 {
         return result;
     }
 
+    public double calcTotalBalance() {
+        double totalBalance = 0;
+        for (Account account : accounts.values()) {
+            totalBalance += account.getBalance();
+        }
+        return totalBalance;
+    }
+
     public HashMap<String, Integer> getTotalCountPerCity() {
         HashMap<String, Integer> result = new HashMap<String, Integer>();
         for (Account account : accounts.values()) {
