@@ -20,22 +20,37 @@ public class Bank4 {
         return accounts.search(id);
     }
 
-    public HashMap<String, Double> getTotalBalancePerCity() {
-        HashMap<String, Double> result = new HashMap<>();
+    public BinarySearchTree<String, Double> getTotalBalancePerCity() {
+        BinarySearchTree<String, Double> result = new BinarySearchTree<>();
         HashMap<Integer, Account> accs = accounts.iterator();
         for (Account account : accs.values()) {
             String city = account.getCity();
-            double ct = result.get(city) == null ? 0 : result.get(city);
+            double ct = result.search(city) == null ? 0 : result.search(city);
             if (ct != 0) {
-                result.put(city, ct + 1);
+                result.insert(city, ct + account.getBalance());
             } else {
-                result.put(city, 1.0);
+                result.insert(city, ct);
             }
         }
         return result;
     }
 
-    public HashMap<Integer, Integer> getTotalCountPerRange(ArrayList<Integer> ranges) {
+    public BinarySearchTree<String, Integer> getTotalCountPerCity() {
+        BinarySearchTree<String, Integer> result = new BinarySearchTree<>();
+        HashMap<Integer, Account> accs = accounts.iterator();
+        for (Account account : accs.values()) {
+            String city = account.getCity();
+            int ct = result.search(city) == null ? 0 : result.search(city);
+            if (ct != 0) {
+                result.insert(city, ct + 1);
+            } else {
+                result.insert(city, 1);
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<Integer> getTotalCountPerRange(ArrayList<Integer> ranges) {
         HashMap<Integer, Integer> result = new HashMap<>();
         HashMap<Integer, Account> accs = accounts.iterator();
         for (int index = 0; index < ranges.size() - 1; index++) {
@@ -50,14 +65,14 @@ public class Bank4 {
             }
             result.put(ranges.get(index + 1), count);
         }
-        return result;
+        return (ArrayList<Integer>) result.values();
     }
 
     public double calcTotalBalance() {
         double totalBalance = 0;
         HashMap<Integer, Account> accs = accounts.iterator();
-        for (Account account: accs.values()) {
-            totalBalance =+ account.getBalance();
+        for (Account account : accs.values()) {
+            totalBalance = +account.getBalance();
         }
         return totalBalance;
     }
@@ -65,4 +80,13 @@ public class Bank4 {
     public boolean addAccount(Account account) {
         return accounts.insert(account.getID(), account);
     }
+
+    public void reportCity(ArrayList<String> cities, BinarySearchTree<String, Double> counts,
+            BinarySearchTree<String, Integer> totals) {
+        System.out.println("\n City \t \t Total Balance \t \t Average Balance");
+        for (int i = 0; i < counts.iterator().size(); i++)
+            System.out.println(
+                    cities.get(i) + " \t \t " + totals.search(i + "") + " \t \t " + totals.search(i + "") / (double) counts.search(i + ""));
+    }
+
 }

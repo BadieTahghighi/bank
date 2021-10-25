@@ -1,5 +1,3 @@
-package bank;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -130,7 +128,7 @@ public class HoomanTestSimple {
         HashMap<String, Integer> counts1 = bank2.getTotalCountPerCity();
 
         // test range aggregation-Count
-        ArrayList<Integer> countsPerRange1 = bank2.getTotalCountPerRange(rangesList);
+        ArrayList<Integer> countsPerRange1 = (ArrayList<Integer>) bank2.getTotalCountPerRange(rangesList).values();
 
         // test count aggregation
         for (int k = 0; k < counts.size(); k++) {

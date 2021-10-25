@@ -161,8 +161,6 @@ public class BinarySearchTree<K, V> extends SearchStructure<K, V> {
                 }
                 if (current != null) {
                     current = current.right;
-                } else {
-                    break;
                 }
             }
         } while (current.parent != null);

@@ -24,6 +24,10 @@ class Account {
         return id;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public String getCity() {
         return city;
     }
