@@ -1,10 +1,14 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
 public class Program {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+    	
+    	Coordinator cd = new Coordinator();
+    	cd.experiment(5000, 100);
         Account acc1 = new Account(1, "Kim", 100, "Sydney");
         Account acc2 = new Account(2, "Jack", 1800, "Sydney");
         Account acc3 = new Account(3, "Jill", 20000, "Tehran");
@@ -107,9 +111,18 @@ public class Program {
         HashMap<String, Integer> counts2 = bank2.getTotalCountPerCity();
         bank2.reportCity(cities2, counts2);
         System.out.println();
-        HashMap<Integer, Integer> countsPerRange1 = bank2.getTotalCountPerRange(ranges);
-        bank2.reportRanges(ranges, countsPerRange1);
-
+       
+        System.out.println("Bank 3:");
+        Bank3 bank3 = new Bank3("Armaghan Bank");
+        
+        //adding accounts
+        bank3.addAccount(acc1);
+        bank3.addAccount(acc2);
+        bank3.addAccount(acc3);
+        bank3.addAccount(acc4);
+        
+        Account accc = bank3.findAccount(2);
+withdraw(accc, 300);
     }
 
     public static void withdraw(Account acc, double amount) // UI method

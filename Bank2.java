@@ -44,25 +44,21 @@ class Bank2 {
 
     // update required
     public HashMap<String, Double> getTotalBalancePerCity() {
-        HashMap<String, Double> result = new HashMap<>();
-        for (Account account : accounts.values()) {
-            double balance = account.getBalance();
-            String city = account.getCity();
-            boolean cityExists = false;
-            for (String ct : result.keySet()) {
-                if (ct.equals(city)) {
-                    cityExists = true;
-                    break;
-                }
+    	HashMap<String,Double> balances=new HashMap<String,Double>();
+        for(Account acc:accounts.values())
+        {
+            Double bal=balances.get(acc.getCity());
+            if (bal!=null)
+            {
+                balances.put(acc.getCity(),bal+acc.getBalance());
             }
-            if (cityExists) {
-                double oldBalance = result.get(city);
-                result.put(city, oldBalance + balance);
-            } else {
-                result.put(city, balance);
+            else
+            {
+                balances.put(acc.getCity(),acc.getBalance());
             }
         }
-        return result;
+        return balances;
+    
     }
 
     public double calcTotalBalance() {
@@ -74,17 +70,20 @@ class Bank2 {
     }
 
     public HashMap<String, Integer> getTotalCountPerCity() {
-        HashMap<String, Integer> result = new HashMap<String, Integer>();
-        for (Account account : accounts.values()) {
-            String city = account.getCity();
-            int ct = result.get(city) == null ? 0 : result.get(city);
-            if (ct != 0) {
-                result.put(city, ct + 1);
-            } else {
-                result.put(city, 1);
+    	HashMap<String,Integer> counts=new HashMap<String,Integer>();
+        for(Account acc:accounts.values())
+        {
+            Integer count=counts.get(acc.getCity());
+            if (count!=null)
+            {
+                counts.put(acc.getCity(),count+1);
+            }
+            else
+            {
+                counts.put(acc.getCity(),1);
             }
         }
-        return result;
+        return counts;
     }
 
     public void reportCity(HashMap<String, Double> balances, HashMap<String, Integer> counts) {
@@ -96,7 +95,7 @@ class Bank2 {
         }
     }
 
-    public HashMap<Integer, Integer> getTotalCountPerRange(ArrayList<Integer> ranges) {
+    public ArrayList<Integer> getTotalCountPerRange(ArrayList<Integer> ranges) {
         HashMap<Integer, Integer> result = new HashMap<>();
         for (int index = 0; index < ranges.size() - 1; index++) {
             int min = ranges.get(index);
@@ -109,9 +108,9 @@ class Bank2 {
                 }
             }
             result.put(ranges.get(index + 1), count);
-            // Armaqan IQ 400 :O
+           
         }
-        return result;
+        return wrapper(result);
     }
 
     public void reportRanges(ArrayList<Integer> ranges, HashMap<Integer, Integer> countsPerRange) {
@@ -121,5 +120,16 @@ class Bank2 {
                     + ranges.get(index) + " - " + ranges.get(index + 1));
         }
     }
+
+	
+	
+	public ArrayList<Integer> wrapper(HashMap<Integer, Integer> input){
+		ArrayList<Integer> res = new ArrayList<Integer>();
+		for(Integer i: input.values()) {
+			res.add(i);
+		}
+		return res;
+	}
+	
 
 }

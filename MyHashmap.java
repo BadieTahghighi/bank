@@ -1,9 +1,10 @@
+import java.util.ArrayList;
 
-public class MyHashmap<key, value> extends SearchStructure<key, value> {
+public class MyHashMap<key, value> extends SearchStructure<key, value> {
 
 	public MyLinkedList[] chain;
 
-	public MyHashmap() {
+	public MyHashMap() {
 		chain = new MyLinkedList[10000];
 		for (int i = 0; i < 10000; i++) {
 			chain[i] = new MyLinkedList<key, value>();
@@ -58,8 +59,8 @@ public class MyHashmap<key, value> extends SearchStructure<key, value> {
 
 	@Override
 	public void print() {
-		for (MyLinkedList node : chain) {
-            node.print();
+		for (MyLinkedList list : chain) {
+            list.print();
         }
 
 	}
@@ -69,5 +70,29 @@ public class MyHashmap<key, value> extends SearchStructure<key, value> {
 		int result = hashCode % 10000;
 		return result;
 	}
+	
+	public ArrayList<value> values(){
+		ArrayList<value> valueList = new ArrayList<value>();
+		for(MyLinkedList list: chain) {
+			ArrayList<value> listValues = list.values();
+			for(value val: listValues) {
+				valueList.add(val);
+			}
+		}
+		return valueList;
+	}
+	
+	public ArrayList<key> keyset(){
+		ArrayList<key> keyset = new ArrayList<key>();
+		for(MyLinkedList list: chain) {
+			ArrayList<key> listKey = list.keyset();
+			for(key val: listKey) {
+				keyset.add(val);
+			}
+		}
+		return keyset;
+	}
+	
+
 
 }

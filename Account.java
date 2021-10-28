@@ -39,6 +39,9 @@ class Account {
     public double getBalance() {
         return balance;
     }
+    public String getName() {
+    	return name;
+    }
 
     boolean withdraw(double amount) {
         if (balance >= amount) {
@@ -48,6 +51,7 @@ class Account {
             return false;
         }
     }
+    
 
     boolean deposit(double amount) {
         if (amount >= 0) {

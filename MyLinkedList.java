@@ -1,5 +1,4 @@
-
-
+import java.util.ArrayList;
 
 public class MyLinkedList<key,value> extends SearchStructure<key,value>{
     public class Node<key,value>{
@@ -91,4 +90,28 @@ public class MyLinkedList<key,value> extends SearchStructure<key,value>{
         }
         System.out.println();
     }
+    
+    public ArrayList<value> values(){
+    	ArrayList<value> valueList = new ArrayList<value>();
+    	 Node<key, value> pointer = head;
+         while (pointer != null){
+        	 value val = pointer.item.data;
+        	 valueList.add(val);
+        	 pointer = pointer.next;
+         }
+         return valueList;
+    }
+    
+    public ArrayList<key> keyset(){
+    	ArrayList<key> keyset = new ArrayList<key>();
+    	Node<key, value> pointer = head;
+    	while (pointer != null) {
+    		key key = pointer.item.key;
+    		keyset.add(key);
+    		pointer = pointer.next;
+    	}
+    	return keyset;
+    }
+    
+   
 }
