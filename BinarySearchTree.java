@@ -29,7 +29,7 @@ public class BinarySearchTree<K, V> extends SearchStructure<K, V> {
         while (current != null) {
             if (current.item.key.equals(key)) {
                 return current.item.data;
-            } else if (current.item.key != null) {
+            } else if (current.item.key.compareTo(key) > 0) {
                 current = current.left;
             } else {
                 current = current.right;
@@ -44,7 +44,7 @@ public class BinarySearchTree<K, V> extends SearchStructure<K, V> {
         boolean isLeftChild = false;
         while (!current.item.key.equals(key)) {
             parent = current;
-            if (current.item.key != null) {
+            if (current.item.key.compareTo(key) > 0) {
                 isLeftChild = true;
                 current = current.left;
             } else {
@@ -130,7 +130,7 @@ public class BinarySearchTree<K, V> extends SearchStructure<K, V> {
         Node<K, V> parent = null;
         while (true) {
             parent = current;
-            if (current.item.key != null) {
+            if (current.item.key.compareTo(key) > 0) {
                 current = current.left;
                 if (current == null) {
                     parent.left = newNode;
