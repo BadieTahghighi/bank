@@ -4,7 +4,7 @@ import java.util.HashMap;
  *
  * @author Hooman
  */
-public class BinarySearchTree<K, V> extends SearchStructure<K, V> {
+public class BinarySearchTree<K extends Comparable<K>, V> extends SearchStructure<K, V> {
     class Node<K, V> {
         Item<K, V> item;
         Node<K, V> left;
@@ -36,67 +36,6 @@ public class BinarySearchTree<K, V> extends SearchStructure<K, V> {
             }
         }
         return null;
-    }
-
-    public boolean delete(Object key) {
-        Node<K, V> parent = root;
-        Node<K, V> current = root;
-        boolean isLeftChild = false;
-        while (!current.item.key.equals(key)) {
-            parent = current;
-            if (current.item.key.compareTo(key) > 0) {
-                isLeftChild = true;
-                current = current.left;
-            } else {
-                isLeftChild = false;
-                current = current.right;
-            }
-            if (current == null) {
-                return false;
-            }
-        }
-        // If program pointer is here that means we have found the node
-        // Case 1: if node to be deleted has no children
-        if (current.left == null && current.right == null) {
-            if (current == root) {
-                root = null;
-            }
-            if (isLeftChild == true) {
-                parent.left = null;
-            } else {
-                parent.right = null;
-            }
-        }
-        // Case 2 : if node to be deleted has only one child
-        else if (current.right == null) {
-            if (current == root) {
-                root = current.left;
-            } else if (isLeftChild) {
-                parent.left = current.left;
-            } else {
-                parent.right = current.left;
-            }
-        } else if (current.left == null) {
-            if (current == root) {
-                root = current.right;
-            } else if (isLeftChild) {
-                parent.left = current.right;
-            } else {
-                parent.right = current.right;
-            }
-        } else if (current.left != null && current.right != null) {
-            // now we have found the minimum element in the right sub-tree
-            Node<K, V> successor = getSuccessor(current);
-            if (current == root) {
-                root = successor;
-            } else if (isLeftChild) {
-                parent.left = successor;
-            } else {
-                parent.right = successor;
-            }
-            successor.left = current.left;
-        }
-        return true;
     }
 
     public Node<K, V> getSuccessor(Node<K, V> deleleNode) {
@@ -182,5 +121,67 @@ public class BinarySearchTree<K, V> extends SearchStructure<K, V> {
         } else {
             System.out.println("Empty Tree");
         }
+    }
+
+    @Override
+    public boolean delete(K key) {
+        Node<K, V> parent = root;
+        Node<K, V> current = root;
+        boolean isLeftChild = false;
+        while (!current.item.key.equals(key)) {
+            parent = current;
+            if (current.item.key.compareTo(key) > 0) {
+                isLeftChild = true;
+                current = current.left;
+            } else {
+                isLeftChild = false;
+                current = current.right;
+            }
+            if (current == null) {
+                return false;
+            }
+        }
+        // If program pointer is here that means we have found the node
+        // Case 1: if node to be deleted has no children
+        if (current.left == null && current.right == null) {
+            if (current == root) {
+                root = null;
+            }
+            if (isLeftChild == true) {
+                parent.left = null;
+            } else {
+                parent.right = null;
+            }
+        }
+        // Case 2 : if node to be deleted has only one child
+        else if (current.right == null) {
+            if (current == root) {
+                root = current.left;
+            } else if (isLeftChild) {
+                parent.left = current.left;
+            } else {
+                parent.right = current.left;
+            }
+        } else if (current.left == null) {
+            if (current == root) {
+                root = current.right;
+            } else if (isLeftChild) {
+                parent.left = current.right;
+            } else {
+                parent.right = current.right;
+            }
+        } else if (current.left != null && current.right != null) {
+            // now we have found the minimum element in the right sub-tree
+            Node<K, V> successor = getSuccessor(current);
+            if (current == root) {
+                root = successor;
+            } else if (isLeftChild) {
+                parent.left = successor;
+            } else {
+                parent.right = successor;
+            }
+            successor.left = current.left;
+        }
+        return true;
     }
 }
